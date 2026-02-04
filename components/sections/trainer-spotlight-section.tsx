@@ -138,7 +138,7 @@ export function TrainerSpotlightSection({ limit = 4 }: TrainerSpotlightSectionPr
                     </CardHeader>
 
                   <CardContent>
-                    <Link href={addLocaleToPath("/trainers", locale)}>
+                    <Link href={addLocaleToPath("/contact", locale)}>
                       <Button
                         variant="outline"
                         size="sm"

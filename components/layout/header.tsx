@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
@@ -21,6 +21,7 @@ export function Header() {
   const pathname = usePathname()
   const locale = getLocaleFromPath(pathname)
   const t = getTranslations(locale)
+  const menuRef = useRef<HTMLDivElement>(null)
 
   const navItems = [
     { label: t.nav.home, href: "/" },
@@ -40,6 +41,48 @@ export function Header() {
     const localeHref = getHref(href)
     return pathname === localeHref || (href === "/" && (pathname === "/" || pathname === "/de"))
   }
+
+  // Close menu on link click
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false)
+  }
+
+  // Close menu on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false)
+      }
+    }
+
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+      // Lock body scroll when menu is open
+      document.body.style.overflow = "hidden"
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+      document.body.style.overflow = ""
+    }
+  }, [mobileMenuOpen])
+
+  // Close menu on escape key
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && mobileMenuOpen) {
+        setMobileMenuOpen(false)
+      }
+    }
+
+    if (mobileMenuOpen) {
+      document.addEventListener("keydown", handleEscape)
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape)
+    }
+  }, [mobileMenuOpen])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -105,65 +148,112 @@ export function Header() {
         </nav>
       </Container>
 
-      {/* Mobile Menu - Documentation: Full-screen overlay */}
+      {/* Mobile Menu - Full-screen overlay with backdrop */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-background md:hidden"
-            id="mobile-menu"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation menu"
-          >
-            <Container className="pt-20">
-              <nav className="flex flex-col space-y-6">
-                {navItems.map((item, index) => {
-                  const active = isActive(item.href)
-                  return (
-                    <motion.div
-                      key={item.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        href={getHref(item.href)}
-                        className={cn(
-                          "text-2xl font-semibold transition-colors block",
-                          active
-                            ? "text-primary"
-                            : "text-foreground hover:text-primary"
-                        )}
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    </motion.div>
-                  )
-                })}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navItems.length * 0.1 }}
-                  className="pt-4"
+          <>
+            {/* Backdrop with blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-md md:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
+
+            {/* Menu Panel - Slide in from top */}
+            <motion.div
+              ref={menuRef}
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              transition={{ 
+                type: "spring",
+                damping: 25,
+                stiffness: 200,
+                duration: 0.4
+              }}
+              className="fixed inset-x-0 top-0 z-50 bg-background md:hidden shadow-2xl"
+              id="mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation menu"
+            >
+              {/* Header with close button */}
+              <div className="flex items-center justify-between h-16 px-4 border-b border-border">
+                <span className="text-xl font-bold">Fit 4All Fitness</span>
+                <button
+                  className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg hover:bg-muted transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close menu"
                 >
-                  <Link href={getHref("/contact")} onClick={() => setMobileMenuOpen(false)}>
-                    <Button 
-                      size="lg" 
-                      className="w-full"
-                      variant={isActive("/contact") ? "default" : "outline"}
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+
+              {/* Menu Content */}
+              <div className="overflow-y-auto max-h-[calc(100vh-4rem)]">
+                <nav className="flex flex-col px-6 py-8 space-y-1">
+                  {navItems.map((item, index) => {
+                    const active = isActive(item.href)
+                    return (
+                      <motion.div
+                        key={item.href}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ 
+                          delay: index * 0.08,
+                          type: "spring",
+                          damping: 20
+                        }}
+                      >
+                        <Link
+                          href={getHref(item.href)}
+                          className={cn(
+                            "block px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200",
+                            active
+                              ? "bg-primary text-primary-foreground shadow-md"
+                              : "text-foreground hover:bg-muted hover:text-primary"
+                          )}
+                          onClick={handleLinkClick}
+                        >
+                          {item.label}
+                        </Link>
+                      </motion.div>
+                    )
+                  })}
+                  
+                  {/* Contact Button */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      delay: navItems.length * 0.08,
+                      type: "spring",
+                      damping: 20
+                    }}
+                    className="pt-6"
+                  >
+                    <Link 
+                      href={getHref("/contact")} 
+                      onClick={handleLinkClick}
+                      className="block"
                     >
-                      {t.nav.contact}
-                    </Button>
-                  </Link>
-                </motion.div>
-              </nav>
-            </Container>
-          </motion.div>
+                      <Button 
+                        size="lg" 
+                        className="w-full text-base font-semibold h-12"
+                        variant={isActive("/contact") ? "default" : "default"}
+                      >
+                        {t.nav.contact}
+                      </Button>
+                    </Link>
+                  </motion.div>
+                </nav>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
