@@ -29,6 +29,12 @@ export function FacilitiesSection({ facilities }: FacilitiesSectionProps) {
   const { t, locale } = useTranslations()
   const currentLocale = locale === "de" ? "de" : "en"
 
+  // Only render facilities that have content for the active locale
+  const localizedFacilities = facilities.filter(
+    (facility) =>
+      facility.title?.[currentLocale] && facility.description?.[currentLocale]
+  )
+
   return (
     <Section spacing="lg" className="bg-muted/20">
       <Container>
@@ -45,9 +51,9 @@ export function FacilitiesSection({ facilities }: FacilitiesSectionProps) {
           </motion.div>
 
           <Grid cols={{ mobile: 1, tablet: 2, desktop: 3 }} gap="md">
-            {facilities.map((facility, index) => {
-              const title = facility.title?.[currentLocale] || facility.title?.en || ""
-              const description = facility.description?.[currentLocale] || facility.description?.en || ""
+            {localizedFacilities.map((facility, index) => {
+              const title = facility.title?.[currentLocale] || ""
+              const description = facility.description?.[currentLocale] || ""
 
               return (
                 <motion.div
