@@ -1,12 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { Container, Section } from "@/components/layout/container"
 import { Grid } from "@/components/layout/grid"
 import { NumberCounter } from "@/components/animations/number-counter"
 import { motion } from "framer-motion"
-import { client } from "@/sanity/lib/client"
-import { testimonialStatsQuery } from "@/sanity/lib/queries"
+import Image from "next/image"
 import { useTranslations } from "@/lib/i18n/use-translations"
 
 type Stat = {
@@ -20,36 +18,32 @@ type Stat = {
   suffix?: string
 }
 
-export function StatsSection() {
-  const { locale } = useTranslations()
-  const [stats, setStats] = useState<Stat[]>([])
-  const [loading, setLoading] = useState(true)
+type StatsSectionProps = {
+  stats: Stat[]
+}
 
-  useEffect(() => {
-    // Fetch stats from Sanity
-    client
-      .fetch<Stat[]>(testimonialStatsQuery)
-      .then((data) => {
-        console.log("Stats fetched:", data)
-        setStats(data || [])
-      })
-      .catch((error) => {
-        console.error("Error fetching stats:", error)
-        setStats([])
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [])
+export function StatsSection({ stats }: StatsSectionProps) {
+  const { t, locale } = useTranslations()
 
-  // Don't render if no stats and not loading (to avoid empty section)
-  if (!loading && stats.length === 0) {
+  if (!stats || stats.length === 0) {
     return null
   }
 
   return (
-    <Section spacing="lg" className="bg-background">
-      <Container>
+    <Section spacing="lg" className="relative overflow-hidden bg-background">
+      {/* Subtle background image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/membership-bg.jpg"
+          alt=""
+          fill
+          quality={40}
+          className="object-cover opacity-[0.04]"
+          sizes="100vw"
+        />
+      </div>
+
+      <Container className="relative z-10">
         <div className="space-y-12">
           {/* ---------- HEADER ---------- */}
           <motion.div
@@ -59,9 +53,9 @@ export function StatsSection() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto"
           >
-            <h2>Our Impact</h2>
-            <p className="text-muted-foreground text-lg">
-              Numbers that reflect our commitment to your fitness journey.
+            <h2 suppressHydrationWarning>{t.homeStats.title}</h2>
+            <p suppressHydrationWarning className="text-muted-foreground text-lg">
+              {t.homeStats.subtitle}
             </p>
           </motion.div>
 

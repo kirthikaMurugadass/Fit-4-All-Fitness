@@ -81,8 +81,11 @@ export function FeaturedProgramsSection() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto"
           >
-            <h2 className="mb-4">{t.programs.title}</h2>
-            <p className="text-muted-foreground text-lg">
+            {/* suppressHydrationWarning avoids transient SSR/CSR locale mismatches */}
+            <h2 suppressHydrationWarning className="mb-4">
+              {t.programs.title}
+            </h2>
+            <p suppressHydrationWarning className="text-muted-foreground text-lg">
               {t.programs.subtitle}
             </p>
           </motion.div>

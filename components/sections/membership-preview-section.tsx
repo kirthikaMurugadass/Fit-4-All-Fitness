@@ -104,9 +104,9 @@ export function MembershipPreviewSection() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto"
           >
-            <h2 className="mb-4">{t.membership.title}</h2>
+            <h2 className="mb-4">{t.membershipPage.title}</h2>
             <p className="text-muted-foreground text-lg">
-              {t.membership.subtitle}
+              {t.membershipPage.subtitle}
             </p>
           </motion.div>
 
@@ -130,7 +130,7 @@ export function MembershipPreviewSection() {
                 >
                   {plan.isPopular && (
                     <div className="bg-primary text-primary-foreground text-center py-2 text-sm font-semibold">
-                      {t.membership.mostPopular}
+                      {(t as any).membership.mostPopular}
                     </div>
                   )}
 

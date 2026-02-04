@@ -22,7 +22,7 @@ type Testimonial = {
 }
 
 export function TestimonialsSection() {
-  const { locale } = useTranslations()
+  const { t, locale } = useTranslations()
   const [testimonials, setTestimonials] = useState<Testimonial[]>([])
 
   useEffect(() => {
@@ -55,9 +55,9 @@ export function TestimonialsSection() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto"
           >
-            <h2>Member Success Stories</h2>
-            <p className="text-muted-foreground text-lg">
-              Real results from real members who transformed their lives with us.
+            <h2 suppressHydrationWarning>{t.testimonials.title}</h2>
+            <p suppressHydrationWarning className="text-muted-foreground text-lg">
+              {t.testimonials.subtitle}
             </p>
           </motion.div>
 

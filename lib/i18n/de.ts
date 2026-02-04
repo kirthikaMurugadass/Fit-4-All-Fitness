@@ -207,6 +207,11 @@ export const de = {
       { value: "10+", label: "Jahre Erfahrung", numeric: 10 },
     ],
   },
+  // Home Stats Section
+  homeStats: {
+    title: "Unsere Wirkung",
+    subtitle: "Zahlen, die unser Engagement für deine Fitnessreise widerspiegeln.",
+  },
   // Final CTA
   cta: {
     title: "Bereit für die Transformation?",

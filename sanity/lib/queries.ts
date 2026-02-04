@@ -85,17 +85,18 @@ export const allFaqsQuery = `*[_type == "faq"]`
 export const testimonialsQuery = `*[_type == "testimonial"]`
 
 // Testimonial statistics (home stats strip)
+// Fetch only stats with a defined numeric value and localized labels
 export const testimonialStatsQuery = `
-  *[_type == "testimonialStat"]
+  *[_type == "testimonialStat" && defined(value)]
   | order(order asc) {
     _id,
-    label {
-      en,
-      de
+    "label": {
+      "en": coalesce(label.en, ""),
+      "de": coalesce(label.de, label.en)
     },
     value,
     decimals,
-    suffix,
+    "suffix": coalesce(suffix, ""),
     order
   }
 `

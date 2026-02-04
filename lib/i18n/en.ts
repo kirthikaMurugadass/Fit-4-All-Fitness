@@ -143,7 +143,7 @@ export const en = {
       },
     ],
   },
-  // Membership
+  // Membership (shared copy)
   membership: {
     title: "Membership Plans",
     subtitle: "Choose the plan that fits your fitness journey. All plans include a 7-day free trial.",
@@ -165,6 +165,39 @@ export const en = {
       access247: "24/7 facility access",
       everythingEssential: "Everything in Essential",
       everythingPremium: "Everything in Premium",
+    },
+    // Structured benefits used by MembershipBenefitsSection
+    benefits: {
+      fullAccess: {
+        title: "Full Facility Access",
+        description:
+          "Unlimited access to all gym equipment, training areas, and facilities during operating hours.",
+      },
+      groupClasses: {
+        title: "Group Classes Included",
+        description:
+          "Join unlimited group fitness classes including yoga, HIIT, strength training, and more.",
+      },
+      lockerRooms: {
+        title: "Modern Locker Rooms",
+        description:
+          "Premium locker rooms with showers, sauna access, and secure storage for your belongings.",
+      },
+      mobileApp: {
+        title: "Mobile App Access",
+        description:
+          "Track your workouts, book classes, and manage your membership all from our mobile app.",
+      },
+      flexibleSchedules: {
+        title: "Flexible Schedules",
+        description:
+          "Train on your schedule with extended hours and 24/7 access options available.",
+      },
+      professionalTrainers: {
+        title: "Professional Trainers",
+        description:
+          "Access to certified trainers for guidance, form checks, and personalized advice.",
+      },
     },
   },
   // Testimonials
@@ -206,6 +239,11 @@ export const en = {
       { value: "95%", label: "Retention Rate", numeric: 95 },
       { value: "10+", label: "Years Experience", numeric: 10 },
     ],
+  },
+  // Home Stats Section
+  homeStats: {
+    title: "Our Impact",
+    subtitle: "Numbers that reflect our commitment to your fitness journey.",
   },
   // Final CTA
   cta: {
@@ -451,41 +489,6 @@ export const en = {
   trainersPage: {
     title: "Our Trainers",
     subtitle: "Meet the expert coaches who will guide your fitness journey.",
-  },
-  // Membership (shared copy)
-  membership: {
-    benefits: {
-      fullAccess: {
-        title: "Full Facility Access",
-        description:
-          "Unlimited access to all gym equipment, training areas, and facilities during operating hours.",
-      },
-      groupClasses: {
-        title: "Group Classes Included",
-        description:
-          "Join unlimited group fitness classes including yoga, HIIT, strength training, and more.",
-      },
-      lockerRooms: {
-        title: "Modern Locker Rooms",
-        description:
-          "Premium locker rooms with showers, sauna access, and secure storage for your belongings.",
-      },
-      mobileApp: {
-        title: "Mobile App Access",
-        description:
-          "Track your workouts, book classes, and manage your membership all from our mobile app.",
-      },
-      flexibleSchedules: {
-        title: "Flexible Schedules",
-        description:
-          "Train on your schedule with extended hours and 24/7 access options available.",
-      },
-      professionalTrainers: {
-        title: "Professional Trainers",
-        description:
-          "Access to certified trainers for guidance, form checks, and personalized advice.",
-      },
-    },
   },
   // Membership Page
   membershipPage: {
