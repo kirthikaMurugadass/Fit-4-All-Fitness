@@ -1,0 +1,1692 @@
+[
+  {
+    "of": [
+      {
+        "marks": {
+          "annotations": [
+            {
+              "fields": [
+                {
+                  "validation": [
+                    {
+                      "rules": [
+                        {
+                          "flag": "uri",
+                          "constraint": {
+                            "options": {
+                              "scheme": [
+                                "/^http$/",
+                                "/^https$/"
+                              ],
+                              "allowRelative": false,
+                              "relativeOnly": false,
+                              "allowCredentials": false
+                            }
+                          }
+                        }
+                      ],
+                      "level": "error"
+                    }
+                  ],
+                  "name": "href",
+                  "type": "url",
+                  "title": "URL"
+                }
+              ],
+              "name": "link",
+              "type": "object",
+              "title": "URL"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "strong",
+              "title": "Strong"
+            },
+            {
+              "value": "em",
+              "title": "Emphasis"
+            }
+          ]
+        },
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Bullet"
+          }
+        ],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          },
+          {
+            "value": "h1",
+            "title": "H1"
+          },
+          {
+            "value": "h2",
+            "title": "H2"
+          },
+          {
+            "value": "h3",
+            "title": "H3"
+          },
+          {
+            "value": "h4",
+            "title": "H4"
+          },
+          {
+            "value": "blockquote",
+            "title": "Quote"
+          }
+        ],
+        "of": [],
+        "type": "block"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative Text"
+          }
+        ],
+        "type": "image"
+      }
+    ],
+    "name": "blockContent",
+    "type": "array"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "category",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "to": [
+          {
+            "type": "author"
+          }
+        ],
+        "name": "author",
+        "type": "reference"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alternative text"
+          }
+        ],
+        "name": "mainImage",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "category"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to category"
+          }
+        ],
+        "name": "categories",
+        "type": "array"
+      },
+      {
+        "name": "publishedAt",
+        "type": "datetime"
+      },
+      {
+        "name": "body",
+        "type": "blockContent"
+      }
+    ],
+    "name": "post",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "name"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "bio",
+        "type": "array"
+      }
+    ],
+    "name": "author",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "string",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "name",
+        "type": "object",
+        "title": "Trainer Name"
+      },
+      {
+        "description": "Example: Personal Trainer, Strength Coach",
+        "fields": [
+          {
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "string",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "role",
+        "type": "object",
+        "title": "Role / Speciality"
+      },
+      {
+        "fields": [
+          {
+            "rows": 3,
+            "name": "en",
+            "type": "text",
+            "title": "English"
+          },
+          {
+            "rows": 3,
+            "name": "de",
+            "type": "text",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "bio",
+        "type": "object",
+        "title": "Short Description"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Trainer Image"
+      },
+      {
+        "initialValue": false,
+        "name": "showOnHome",
+        "type": "boolean",
+        "title": "Show on Home Page"
+      },
+      {
+        "description": "Lower number = shown first",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "trainer",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "string",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "title",
+        "type": "object",
+        "title": "Plan Title"
+      },
+      {
+        "fields": [
+          {
+            "rows": 3,
+            "name": "en",
+            "type": "text",
+            "title": "English"
+          },
+          {
+            "rows": 3,
+            "name": "de",
+            "type": "text",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "description",
+        "type": "object"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "price",
+        "type": "number"
+      },
+      {
+        "initialValue": "CHF",
+        "options": {
+          "list": [
+            "CHF",
+            "EUR",
+            "USD"
+          ]
+        },
+        "name": "currency",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Monthly",
+              "value": "monthly"
+            },
+            {
+              "title": "Quarterly",
+              "value": "quarterly"
+            },
+            {
+              "title": "Yearly",
+              "value": "yearly"
+            }
+          ]
+        },
+        "name": "duration",
+        "type": "string",
+        "title": "Billing Duration"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "fields": [
+                  {
+                    "name": "en",
+                    "type": "string",
+                    "title": "English"
+                  },
+                  {
+                    "name": "de",
+                    "type": "string",
+                    "title": "Deutsch"
+                  }
+                ],
+                "name": "text",
+                "type": "object",
+                "title": "Feature Text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "features",
+        "type": "array"
+      },
+      {
+        "initialValue": false,
+        "name": "isPopular",
+        "type": "boolean",
+        "title": "Mark as Popular"
+      },
+      {
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "initialValue": true,
+        "name": "isActive",
+        "type": "boolean",
+        "title": "Active Plan"
+      }
+    ],
+    "name": "membership",
+    "type": "document",
+    "title": "Membership Plan"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "string",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "name",
+        "type": "object",
+        "title": "Program Name"
+      },
+      {
+        "options": {
+          "source": "name.en",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "fields": [
+          {
+            "rows": 3,
+            "name": "en",
+            "type": "text",
+            "title": "English"
+          },
+          {
+            "rows": 3,
+            "name": "de",
+            "type": "text",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "description",
+        "type": "object",
+        "title": "Short Description"
+      },
+      {
+        "fields": [
+          {
+            "of": [
+              {
+                "marks": {
+                  "annotations": [
+                    {
+                      "i18nTitleKey": "inputs.portable-text.annotation.link",
+                      "options": {
+                        "modal": {
+                          "type": "popover"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "validation": [
+                            {
+                              "rules": [
+                                {
+                                  "flag": "uri",
+                                  "constraint": {
+                                    "options": {
+                                      "scheme": [
+                                        "/^http$/",
+                                        "/^https$/",
+                                        "/^tel$/",
+                                        "/^mailto$/"
+                                      ],
+                                      "allowRelative": true,
+                                      "relativeOnly": false,
+                                      "allowCredentials": false
+                                    }
+                                  }
+                                }
+                              ],
+                              "level": "error"
+                            }
+                          ],
+                          "description": "A valid web, email, phone, or relative link.",
+                          "name": "href",
+                          "type": "url",
+                          "title": "Link"
+                        }
+                      ],
+                      "name": "link",
+                      "type": "object"
+                    }
+                  ],
+                  "decorators": [
+                    {
+                      "value": "strong",
+                      "title": "Strong"
+                    },
+                    {
+                      "value": "em",
+                      "title": "Italic"
+                    },
+                    {
+                      "value": "code",
+                      "title": "Code"
+                    },
+                    {
+                      "value": "underline",
+                      "title": "Underline"
+                    },
+                    {
+                      "value": "strike-through",
+                      "title": "Strike"
+                    }
+                  ]
+                },
+                "lists": [
+                  {
+                    "value": "bullet",
+                    "title": "Bulleted list"
+                  },
+                  {
+                    "value": "number",
+                    "title": "Numbered list"
+                  }
+                ],
+                "styles": [
+                  {
+                    "value": "normal",
+                    "title": "Normal"
+                  },
+                  {
+                    "value": "h1",
+                    "title": "Heading 1"
+                  },
+                  {
+                    "value": "h2",
+                    "title": "Heading 2"
+                  },
+                  {
+                    "value": "h3",
+                    "title": "Heading 3"
+                  },
+                  {
+                    "value": "h4",
+                    "title": "Heading 4"
+                  },
+                  {
+                    "value": "h5",
+                    "title": "Heading 5"
+                  },
+                  {
+                    "value": "h6",
+                    "title": "Heading 6"
+                  },
+                  {
+                    "value": "blockquote",
+                    "title": "Quote"
+                  }
+                ],
+                "of": [],
+                "type": "block"
+              }
+            ],
+            "name": "en",
+            "type": "array",
+            "title": "English"
+          },
+          {
+            "of": [
+              {
+                "marks": {
+                  "annotations": [
+                    {
+                      "i18nTitleKey": "inputs.portable-text.annotation.link",
+                      "options": {
+                        "modal": {
+                          "type": "popover"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "validation": [
+                            {
+                              "rules": [
+                                {
+                                  "flag": "uri",
+                                  "constraint": {
+                                    "options": {
+                                      "scheme": [
+                                        "/^http$/",
+                                        "/^https$/",
+                                        "/^tel$/",
+                                        "/^mailto$/"
+                                      ],
+                                      "allowRelative": true,
+                                      "relativeOnly": false,
+                                      "allowCredentials": false
+                                    }
+                                  }
+                                }
+                              ],
+                              "level": "error"
+                            }
+                          ],
+                          "description": "A valid web, email, phone, or relative link.",
+                          "name": "href",
+                          "type": "url",
+                          "title": "Link"
+                        }
+                      ],
+                      "name": "link",
+                      "type": "object"
+                    }
+                  ],
+                  "decorators": [
+                    {
+                      "value": "strong",
+                      "title": "Strong"
+                    },
+                    {
+                      "value": "em",
+                      "title": "Italic"
+                    },
+                    {
+                      "value": "code",
+                      "title": "Code"
+                    },
+                    {
+                      "value": "underline",
+                      "title": "Underline"
+                    },
+                    {
+                      "value": "strike-through",
+                      "title": "Strike"
+                    }
+                  ]
+                },
+                "lists": [
+                  {
+                    "value": "bullet",
+                    "title": "Bulleted list"
+                  },
+                  {
+                    "value": "number",
+                    "title": "Numbered list"
+                  }
+                ],
+                "styles": [
+                  {
+                    "value": "normal",
+                    "title": "Normal"
+                  },
+                  {
+                    "value": "h1",
+                    "title": "Heading 1"
+                  },
+                  {
+                    "value": "h2",
+                    "title": "Heading 2"
+                  },
+                  {
+                    "value": "h3",
+                    "title": "Heading 3"
+                  },
+                  {
+                    "value": "h4",
+                    "title": "Heading 4"
+                  },
+                  {
+                    "value": "h5",
+                    "title": "Heading 5"
+                  },
+                  {
+                    "value": "h6",
+                    "title": "Heading 6"
+                  },
+                  {
+                    "value": "blockquote",
+                    "title": "Quote"
+                  }
+                ],
+                "of": [],
+                "type": "block"
+              }
+            ],
+            "name": "de",
+            "type": "array",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "longDescription",
+        "type": "object",
+        "title": "Program Details"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Program Image"
+      },
+      {
+        "fields": [
+          {
+            "options": {
+              "list": [
+                "Beginner",
+                "Intermediate",
+                "Advanced"
+              ]
+            },
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "options": {
+              "list": [
+                "Anfänger",
+                "Mittelstufe",
+                "Fortgeschritten"
+              ]
+            },
+            "name": "de",
+            "type": "string",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "difficulty",
+        "type": "object",
+        "title": "Difficulty Level"
+      },
+      {
+        "initialValue": false,
+        "description": "Show this program in Featured Programs section",
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Program"
+      },
+      {
+        "initialValue": true,
+        "name": "active",
+        "type": "boolean"
+      },
+      {
+        "description": "Lower number = shown first",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "program",
+    "type": "document",
+    "title": "Programs"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Client Name"
+      },
+      {
+        "description": "Example: Gym Member, PT Client",
+        "fields": [
+          {
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "string",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "role",
+        "type": "object",
+        "title": "Client Role / Membership"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "rows": 4,
+            "name": "en",
+            "type": "text",
+            "title": "English"
+          },
+          {
+            "rows": 4,
+            "name": "de",
+            "type": "text",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "quote",
+        "type": "object",
+        "title": "Testimonial Quote"
+      },
+      {
+        "initialValue": 5,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 5
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "rating",
+        "type": "number"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Client Image"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "gymImage",
+        "type": "image",
+        "title": "Gym Background Image"
+      },
+      {
+        "initialValue": true,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Show on Home Page"
+      },
+      {
+        "initialValue": true,
+        "name": "active",
+        "type": "boolean"
+      },
+      {
+        "description": "Lower number = shown first",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "testimonial",
+    "type": "document",
+    "title": "Testimonials"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "string",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "label",
+        "type": "object",
+        "title": "Stat Label"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "value",
+        "type": "number",
+        "title": "Stat Value"
+      },
+      {
+        "initialValue": 0,
+        "description": "Number of decimal places to display (e.g., 1 for 4.2)",
+        "name": "decimals",
+        "type": "number",
+        "title": "Decimal Places"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "+",
+              "value": "+"
+            },
+            {
+              "title": "%",
+              "value": "%"
+            },
+            {
+              "title": "Years",
+              "value": "yrs"
+            },
+            {
+              "title": "None"
+            }
+          ]
+        },
+        "description": "Symbol shown after number ( + , % , yrs )",
+        "name": "suffix",
+        "type": "string",
+        "title": "Value Suffix"
+      },
+      {
+        "description": "Lower number = shown first",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "testimonialStat",
+    "type": "document",
+    "title": "Testimonial Statistics"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "string",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "question",
+        "type": "object"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "rows": 4,
+            "name": "en",
+            "type": "text",
+            "title": "English"
+          },
+          {
+            "rows": 4,
+            "name": "de",
+            "type": "text",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "answer",
+        "type": "object"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Membership",
+              "value": "membership"
+            },
+            {
+              "title": "Payments",
+              "value": "payments"
+            },
+            {
+              "title": "Training",
+              "value": "training"
+            },
+            {
+              "title": "General",
+              "value": "general"
+            }
+          ]
+        },
+        "initialValue": "membership",
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "initialValue": true,
+        "name": "active",
+        "type": "boolean"
+      },
+      {
+        "description": "Lower number = shown first",
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "faq",
+    "type": "document",
+    "title": "FAQ"
+  },
+  {
+    "fields": [
+      {
+        "fields": [
+          {
+            "rows": 3,
+            "name": "en",
+            "type": "text",
+            "title": "English"
+          },
+          {
+            "rows": 3,
+            "name": "de",
+            "type": "text",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "address",
+        "type": "object"
+      },
+      {
+        "name": "phone",
+        "type": "string"
+      },
+      {
+        "name": "mobile",
+        "type": "string"
+      },
+      {
+        "name": "email",
+        "type": "string"
+      }
+    ],
+    "name": "contactInfo",
+    "type": "document",
+    "title": "Contact Information"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "string",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "title",
+        "type": "object",
+        "title": "Facility Title"
+      },
+      {
+        "fields": [
+          {
+            "rows": 3,
+            "name": "en",
+            "type": "text",
+            "title": "English"
+          },
+          {
+            "rows": 3,
+            "name": "de",
+            "type": "text",
+            "title": "Deutsch"
+          }
+        ],
+        "name": "description",
+        "type": "object"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Facility Image"
+      },
+      {
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "initialValue": true,
+        "name": "active",
+        "type": "boolean"
+      }
+    ],
+    "name": "facility",
+    "type": "document",
+    "title": "Facilities"
+  },
+  {
+    "fields": [
+      {
+        "fields": [
+          {
+            "name": "en",
+            "type": "string",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "string",
+            "title": "German"
+          }
+        ],
+        "name": "title",
+        "type": "object",
+        "title": "Hero Title"
+      },
+      {
+        "fields": [
+          {
+            "name": "en",
+            "type": "text",
+            "title": "English"
+          },
+          {
+            "name": "de",
+            "type": "text",
+            "title": "German"
+          }
+        ],
+        "name": "subtitle",
+        "type": "object",
+        "title": "Hero Subtitle"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 3
+              }
+            ],
+            "level": "warning",
+            "message": "Recommended: 3 background images"
+          }
+        ],
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "backgroundImages",
+        "type": "array"
+      },
+      {
+        "fields": [
+          {
+            "fields": [
+              {
+                "name": "en",
+                "type": "string",
+                "title": "English"
+              },
+              {
+                "name": "de",
+                "type": "string",
+                "title": "German"
+              }
+            ],
+            "name": "text",
+            "type": "object",
+            "title": "Button Text"
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "title": "Button Link"
+          }
+        ],
+        "name": "primaryCta",
+        "type": "object",
+        "title": "Primary Button"
+      },
+      {
+        "fields": [
+          {
+            "fields": [
+              {
+                "name": "en",
+                "type": "string",
+                "title": "English"
+              },
+              {
+                "name": "de",
+                "type": "string",
+                "title": "German"
+              }
+            ],
+            "name": "text",
+            "type": "object",
+            "title": "Button Text"
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "title": "Button Link"
+          }
+        ],
+        "name": "secondaryCta",
+        "type": "object",
+        "title": "Secondary Button"
+      }
+    ],
+    "name": "hero",
+    "type": "document",
+    "title": "Hero Section"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Instagram",
+              "value": "instagram"
+            },
+            {
+              "title": "Facebook",
+              "value": "facebook"
+            },
+            {
+              "title": "Twitter / X",
+              "value": "twitter"
+            },
+            {
+              "title": "LinkedIn",
+              "value": "linkedin"
+            },
+            {
+              "title": "YouTube",
+              "value": "youtube"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "instagram",
+                  "facebook",
+                  "twitter",
+                  "linkedin",
+                  "youtube"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "platform",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "url",
+        "type": "url",
+        "title": "Profile URL"
+      },
+      {
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      }
+    ],
+    "name": "socialLink",
+    "type": "document",
+    "title": "Social Links"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "name": "phone",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "subject",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "message",
+        "type": "text"
+      },
+      {
+        "name": "createdAt",
+        "type": "datetime"
+      }
+    ],
+    "name": "contactMessage",
+    "type": "document",
+    "title": "Contact Messages"
+  }
+]

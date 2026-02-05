@@ -5,5 +5,5 @@ export const writeClient = createClient({
   dataset: "production",
   apiVersion: "2026-02-02",
   useCdn: false, // IMPORTANT
-  token: process.env.SANITY_API_TOKEN, 
+  token: process.env.SANITY_API_WRITETOKEN, 
 })
